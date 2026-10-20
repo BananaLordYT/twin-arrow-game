@@ -25,20 +25,11 @@ jobs:
       - name: Build portable executable
         working-directory: TwinArrowArena-WindowsEdition
         run: pyinstaller --noconfirm --clean --onefile --noconsole --name TwinArrowArena twin_arrow_arena.py
-      - name: Build AppData installer
-        working-directory: TwinArrowArena-WindowsEdition
-        shell: pwsh
-        run: |
-          choco install innosetup --yes --no-progress
-          $iscc = Join-Path $env:ProgramFiles 'Inno Setup 6\ISCC.exe'
-          & $iscc packaging/windows/TwinArrowArena.iss
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         with:
           name: Twin-Arrow-Arena-Windows
           path: |
             TwinArrowArena-WindowsEdition/dist/TwinArrowArena.exe
-            TwinArrowArena-WindowsEdition/dist/TwinArrowArena-AppData-Setup.exe
             TwinArrowArena-WindowsEdition/server_url.txt
           if-no-files-found: error
           retention-days: 30
