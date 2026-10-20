@@ -1,0 +1,8 @@
+Windows build upload
+====================
+Extract the contents of this folder into the root of the existing GitHub
+repository. Keep .github/workflows/build-windows.yml at exactly that path.
+Commit/upload the files. GitHub Actions then builds a portable Windows EXE and
+an installer that places the game under the current user's AppData folder.
+Get both from Actions > Build Windows releases > latest run >
+Twin-Arrow-Arena-Windows.
